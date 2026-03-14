@@ -1,12 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <title>Spotify Stats</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-</body>
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon" />
+
+    <title>Spotify Stats</title>
+  </head>
+
+  <body>
+    <div class="formContainer">
+      <img src="../img/logo.png" alt="SpotifyStats Logo" id="logo" />
+      <h1>SpotifyStats</h1>
+
+      <form id="playlistForm">
+        <div class="inputContainer">
+          <label for="playlist">Playlist link</label>
+          <input
+            id="playlist"
+            name="playlist"
+            type="text"
+            placeholder="Enter playlist link"
+            required
+          />
+        </div>
+
+        <button type="submit" id="submitPlaylist">Submit</button>
+      </form>
+    </div>
+  </body>
 </html>
