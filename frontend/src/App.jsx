@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./App.css";
+import "./index.css";
 
 function App() {
   return (
-    <div>
+    <div className="">
       <p>lol</p>
     </div>
   );
