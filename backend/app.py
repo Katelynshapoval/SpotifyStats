@@ -28,7 +28,7 @@ def callback():
     session["access_token"] = tokens["access_token"]
     session["refresh_token"] = tokens.get("refresh_token")
 
-    return redirect("/")
+    return redirect("http://localhost:5173")
 
 
 @app.route("/sendLink", methods=["POST"])
