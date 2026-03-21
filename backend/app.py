@@ -1,7 +1,9 @@
 from flask import Flask, redirect, request, session, render_template
 from auth import get_auth_url, get_tokens
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 app.secret_key = "super_secret_key"
 
 
@@ -9,6 +11,13 @@ app.secret_key = "super_secret_key"
 def index():
     logged_in = "access_token" in session
     return render_template("index.html", logged_in=logged_in)
+
+
+@app.route("/me")
+def me():
+    if "access_token" in session:
+        return {"logged_in": True}
+    return {"logged_in": False}
 
 
 @app.route("/login")
