@@ -27,7 +27,12 @@ function Home() {
 
   return (
     <div>
-      <p>home</p>
+      <header className="flex items-center gap-4 bg-surface-base text-white p-3 text-lg">
+        <img src="logo.ico" /> Spotify Stats
+      </header>
+      <main>
+        <div className="">Hello, user</div>
+      </main>
     </div>
   );
 }
