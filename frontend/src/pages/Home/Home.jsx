@@ -6,6 +6,7 @@ function Home() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(null);
   const [user, setUser] = useState(null);
+  const [topTracks, setTopTracks] = useState([]);
 
   // Check if user is logged in
   useEffect(() => {
@@ -28,6 +29,18 @@ function Home() {
       .then((res) => res.json())
       .then((data) => {
         setUser(data);
+      });
+  }, [loggedIn]);
+
+  useEffect(() => {
+    if (!loggedIn) return;
+
+    fetch("http://127.0.0.1:5000/top-tracks", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTopTracks(data);
       });
   }, [loggedIn]);
 
@@ -64,6 +77,27 @@ function Home() {
             type="text"
             placeholder="Enter the playlist link"
           />
+        </div>
+
+        {/* User stats */}
+        <div className="flex flex-col gap-3">
+          {/* Top tracks */}
+          <div className="text-center text-xl mb-4">Top 5 tracks</div>
+          {topTracks.map((t, i) => (
+            <div key={t.id} className="flex items-center gap-4">
+              {/* Rank */}
+              <span className="w-6 text-right">{i + 1}</span>
+
+              {/* Image */}
+              <img src={t.image} alt={t.name} className="w-12 h-12 rounded" />
+
+              {/* Text */}
+              <div>
+                <p className="font-semibold">{t.name}</p>
+                <p className="text-sm text-neutral-400">{t.artist}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </main>
     </div>

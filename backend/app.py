@@ -2,7 +2,7 @@ from flask import Flask, redirect, request, session, render_template
 from flask_cors import CORS
 
 from auth import get_auth_url, get_tokens
-from user_data import get_user_profile
+from user_data import get_user_profile, get_top_tracks
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -44,6 +44,15 @@ def user():
         return {"error": "Not logged in"}, 401
 
     return get_user_profile(session["access_token"])
+
+
+# Fetch user's top tracks
+@app.route("/top-tracks")
+def top_tracks():
+    if "access_token" not in session:
+        return redirect("/login")
+
+    return get_top_tracks(session["access_token"])
 
 
 # Handle playlist input
