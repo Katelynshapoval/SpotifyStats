@@ -3,7 +3,7 @@ from auth import get_auth_url, get_tokens
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
 app.secret_key = "super_secret_key"
 
 
@@ -37,7 +37,7 @@ def callback():
     session["access_token"] = tokens["access_token"]
     session["refresh_token"] = tokens.get("refresh_token")
 
-    return redirect("http://localhost:5173")
+    return redirect("http://127.0.0.1:5173")
 
 
 @app.route("/sendLink", methods=["POST"])

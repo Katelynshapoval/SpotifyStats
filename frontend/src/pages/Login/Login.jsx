@@ -2,7 +2,7 @@ import { FaSpotify } from "react-icons/fa";
 
 function Login() {
   const handleLogin = async () => {
-    window.location.href = "http://localhost:5000/login";
+    window.location.href = "http://127.0.0.1:5000/login";
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-surface-base px-8 ">
