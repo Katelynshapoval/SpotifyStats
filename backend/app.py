@@ -2,7 +2,7 @@ from flask import Flask, redirect, request, session, render_template
 from flask_cors import CORS
 
 from auth import get_auth_url, get_tokens
-from user_data import get_user_profile, get_top_tracks, get_top_artists
+from user_data import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -62,6 +62,15 @@ def top_artists():
         return redirect("/login")
 
     return get_top_artists(session["access_token"])
+
+
+# Fetch user's top decades
+@app.route("/top-decades")
+def top_decades():
+    if "access_token" not in session:
+        return redirect("/login")
+
+    return get_top_decades(session["access_token"])
 
 
 # Handle playlist input

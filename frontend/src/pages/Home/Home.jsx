@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiPlayList2Fill } from "react-icons/ri";
+import CustomPieChart from "../../components/CustomPieChart";
 
 function Home() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ function Home() {
   const [user, setUser] = useState(null);
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
+  const [topDecades, setTopDecades] = useState([]);
 
   // Check auth
   useEffect(() => {
@@ -24,19 +26,24 @@ function Home() {
     if (!loggedIn) return;
 
     const fetchData = async () => {
-      const [userRes, tracksRes, artistsRes] = await Promise.all([
+      const [userRes, tracksRes, artistsRes, decadesRes] = await Promise.all([
         fetch("http://127.0.0.1:5000/user", { credentials: "include" }),
         fetch("http://127.0.0.1:5000/top-tracks", { credentials: "include" }),
         fetch("http://127.0.0.1:5000/top-artists", { credentials: "include" }),
+        fetch("http://127.0.0.1:5000/top-decades", { credentials: "include" }),
       ]);
 
       const userData = await userRes.json();
       const tracksData = await tracksRes.json();
       const artistsData = await artistsRes.json();
+      const decadesData = await decadesRes.json();
+
+      console.log(decadesData);
 
       setUser(userData);
       setTopTracks(tracksData);
       setTopArtists(artistsData);
+      setTopDecades(decadesData);
     };
 
     fetchData();
@@ -121,6 +128,13 @@ function Home() {
               ))}
             </div>
           </div>
+          {/* Top Decades */}
+          <CustomPieChart
+            data={topDecades}
+            title="Top Decades"
+            dataKey="count"
+            nameKey="decade"
+          />
         </div>
       </main>
     </div>
