@@ -19,7 +19,7 @@ def get_auth_url():
         "client_id": CLIENT_ID,
         "response_type": "code",
         "redirect_uri": REDIRECT_URI,
-        "scope": "playlist-read-private"
+        "scope": "user-read-private playlist-read-private"
     }
     return f"{AUTH_URL}?{urlencode(params)}"
 

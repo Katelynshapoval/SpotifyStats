@@ -10,8 +10,8 @@ app.secret_key = "super_secret_key"
 
 
 # Check if user is logged in
-@app.route("/me")
-def me():
+@app.route("/auth/status")
+def status():
     return {"logged_in": "access_token" in session}
 
 
@@ -38,8 +38,8 @@ def callback():
 
 
 # Fetch logged-in user's Spotify profile data
-@app.route("/profile")
-def profile():
+@app.route("/user")
+def user():
     if "access_token" not in session:
         return {"error": "Not logged in"}, 401
 
