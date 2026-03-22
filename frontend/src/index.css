@@ -18,3 +18,29 @@
     @apply font-sans;
   }
 }
+
+@layer components {
+  .card {
+    @apply bg-neutral-900 rounded-xl p-4 shadow-lg;
+  }
+
+  .card-title {
+    @apply text-lg font-semibold mb-4;
+  }
+
+  .item {
+    @apply flex items-center gap-4 p-2 rounded-lg hover:bg-neutral-800 transition;
+  }
+
+  .rank {
+    @apply w-6 text-neutral-400;
+  }
+
+  .track-image {
+    @apply w-12 h-12 rounded-md;
+  }
+
+  .artist-image {
+    @apply w-12 h-12 rounded-full;
+  }
+}
