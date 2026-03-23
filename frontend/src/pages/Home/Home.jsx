@@ -83,58 +83,62 @@ function Home() {
         </div>
 
         {/* Cards Grid */}
-        <div className="w-full max-w-5xl grid md:grid-cols-2 gap-6">
-          {/* Top Tracks Card */}
-          <div className="card">
-            <h2 className="card-title">Top Tracks</h2>
+        <div className="w-full max-w-6xl grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-2">
+            <div className="card h-full">
+              <h2 className="card-title">Top Tracks</h2>
 
-            <div className="flex flex-col gap-3">
-              {topTracks.slice(0, 5).map((t, i) => (
-                <div key={t.id} className="item">
-                  <span className="rank">{i + 1}</span>
+              <div className="flex flex-col gap-3">
+                {topTracks.slice(0, 10).map((t, i) => (
+                  <div key={t.id} className="item">
+                    <span className="rank">{i + 1}</span>
 
-                  <img
-                    src={t.image}
-                    alt={t.name}
-                    className="w-12 h-12 rounded-md"
-                  />
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="w-12 h-12 rounded-md"
+                    />
 
-                  <div>
-                    <p className="font-medium">{t.name}</p>
-                    <p className="text-sm text-neutral-400">{t.artist}</p>
+                    <div>
+                      <p className="font-medium">{t.name}</p>
+                      <p className="text-sm text-neutral-400">{t.artist}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Top Artists Card */}
-          <div className="card">
-            <h2 className="card-title">Top Artists</h2>
+          <div className="flex flex-col gap-6">
+            {/* Top Artists */}
+            <div className="card">
+              <h2 className="card-title">Top Artists</h2>
 
-            <div className="flex flex-col gap-3">
-              {topArtists.slice(0, 5).map((a, i) => (
-                <div key={a.id} className="item">
-                  <span className="rank">{i + 1}</span>
+              <div className="flex flex-col gap-3">
+                {topArtists.slice(0, 5).map((a, i) => (
+                  <div key={a.id} className="item">
+                    <span className="rank">{i + 1}</span>
 
-                  <img
-                    src={a.image}
-                    alt={a.name}
-                    className="w-12 h-12 rounded-full"
-                  />
+                    <img
+                      src={a.image}
+                      alt={a.name}
+                      className="w-12 h-12 rounded-full"
+                    />
 
-                  <p className="font-medium">{a.name}</p>
-                </div>
-              ))}
+                    <p className="font-medium">{a.name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Top Decades */}
+            <CustomPieChart
+              data={topDecades}
+              title="Top Decades"
+              dataKey="count"
+              nameKey="decade"
+            />
           </div>
-          {/* Top Decades */}
-          <CustomPieChart
-            data={topDecades}
-            title="Top Decades"
-            dataKey="count"
-            nameKey="decade"
-          />
         </div>
       </main>
     </div>

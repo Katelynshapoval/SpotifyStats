@@ -23,8 +23,8 @@ function CustomPieChart({ data, title, dataKey = "value", nameKey = "label" }) {
               dataKey={dataKey}
               nameKey={nameKey}
               cx="50%"
-              cy="50%"
-              outerRadius={110}
+              cy="40%"
+              outerRadius={70}
               labelLine={false}
               label={({ cx, cy, midAngle, outerRadius, percent }) => {
                 const RADIAN = Math.PI / 180;

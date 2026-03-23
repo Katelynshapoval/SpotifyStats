@@ -22,7 +22,7 @@ def get_user_profile(access_token):
 
 def get_top_tracks(access_token):
     res = requests.get(
-        f"{BASE_URL}/me/top/tracks?limit=5",
+        f"{BASE_URL}/me/top/tracks?limit=10",
         headers=get_headers(access_token)
     )
     res.raise_for_status()
