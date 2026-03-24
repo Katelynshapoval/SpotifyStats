@@ -62,25 +62,10 @@ function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-base text-white">
-      {/* Header */}
-      <header className="flex items-center gap-3 px-4 py-3 bg-surface-alt text-lg font-semibold">
-        <img src="logo.ico" alt="logo" className="h-6 w-6" />
-        <span>Spotify Stats</span>
-      </header>
-
+    <div className="">
       <main className="px-4 py-6 flex flex-col items-center gap-8">
         <h1 className="text-2xl">Hello, {user.name}</h1>
-
-        {/* Playlist input */}
-        <div className="relative w-full max-w-md">
-          <RiPlayList2Fill className="absolute left-3 top-1/2 -translate-y-1/2 text-light text-lg" />
-          <input
-            className="w-full pl-10 pr-3 py-3 rounded-lg bg-brand outline-none focus:bg-brand-bright transition"
-            type="text"
-            placeholder="Enter the playlist link"
-          />
-        </div>
+        <p>here you can visualise your main profile data.</p>
 
         {/* Cards Grid */}
         <div className="w-full max-w-6xl grid md:grid-cols-3 gap-6">
