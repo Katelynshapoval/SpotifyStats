@@ -1,0 +1,21 @@
+@reference "../../index.css";
+
+@layer components {
+  .navItem {
+    @apply flex items-center gap-5 w-full h-11 p-3 rounded-lg cursor-pointer
+           whitespace-nowrap text-nowrap transition-colors duration-150
+           hover:bg-brand-bright;
+  }
+
+  .navItem.active {
+    @apply bg-brand-bright text-black;
+  }
+
+  .optionIcon {
+    @apply text-xl min-w-6 shrink-0;
+  }
+
+  .label-hidden {
+    @apply opacity-0 invisible pointer-events-none;
+  }
+}

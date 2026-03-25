@@ -63,10 +63,7 @@ function Home() {
 
   return (
     <div className="">
-      <main className="px-4 py-6 flex flex-col items-center gap-8">
-        <h1 className="text-2xl">Hello, {user.name}</h1>
-        <p>here you can visualise your main profile data.</p>
-
+      <main className="px-4 flex flex-col items-center gap-8 h-full">
         {/* Cards Grid */}
         <div className="w-full max-w-6xl grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2">

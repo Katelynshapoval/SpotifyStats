@@ -13,7 +13,7 @@ function DashboardLayout() {
           <span>Spotify Stats</span>
         </header>
         {/* Page content */}
-        <div className="p-6 bg-surface-base text-white">
+        <div className="p-6 flex-1 bg-surface-base text-white">
           <Outlet />
         </div>
       </div>
