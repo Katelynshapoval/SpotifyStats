@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
+import Playlist from "./pages/Playlist/Playlist";
 import "./index.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<DashboardLayout />}>
         <Route index element={<Home />} />
+        <Route path="/playlist" element={<Playlist />} />
       </Route>
     </Routes>
   );

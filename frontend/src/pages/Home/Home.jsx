@@ -58,7 +58,12 @@ function Home() {
 
   // Loading state
   if (loggedIn === null || user === null) {
-    return <div className="text-white p-6">Loading...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-white gap-4">
+        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-lg font-medium">Loading</p>
+      </div>
+    );
   }
 
   return (
