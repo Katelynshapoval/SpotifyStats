@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { RiPlayList2Fill } from "react-icons/ri";
 import CustomPieChart from "../../components/CustomPieChart";
 
 function Home() {

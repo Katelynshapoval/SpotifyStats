@@ -1,0 +1,13 @@
+@reference "../../index.css";
+
+@layer components {
+  .dataCell {
+    @apply bg-black rounded-lg p-5 border border-green-500/20 hover:border-green-400 transition;
+  }
+  .dataCell p {
+    @apply text-sm text-gray-400;
+  }
+  .dataCell h2 {
+    @apply text-2xl font-bold text-green-400 mt-1;
+  }
+}

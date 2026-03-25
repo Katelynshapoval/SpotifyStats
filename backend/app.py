@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from auth import get_auth_url, get_tokens
 from user_data import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
+from playlist_data import playlist_data
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -74,13 +75,15 @@ def top_decades():
 
 
 # Handle playlist input
-@app.route("/sendLink", methods=["POST"])
-def send_link():
+@app.route("/playlist", methods=["POST"])
+def playlist():
     if "access_token" not in session:
         return redirect("/login")
 
-    playlist_url = request.form.get("playlist")
-    return {"message": "Playlist received", "url": playlist_url}
+    data = request.get_json()
+    url = data.get("url")
+
+    return playlist_data(session["access_token"], url)
 
 
 if __name__ == "__main__":

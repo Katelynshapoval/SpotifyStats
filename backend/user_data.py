@@ -1,12 +1,9 @@
 from collections import Counter
 
 import requests
+from utils import get_headers
 
 BASE_URL = "https://api.spotify.com/v1"
-
-
-def get_headers(token):
-    return {"Authorization": f"Bearer {token}"}
 
 
 def get_user_profile(access_token):
