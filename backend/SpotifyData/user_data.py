@@ -1,7 +1,9 @@
 from collections import Counter
 
 import requests
-from utils import get_headers
+
+from backend.utils import get_headers
+from backend.track_data import get_track_analysis
 
 BASE_URL = "https://api.spotify.com/v1"
 
@@ -25,15 +27,23 @@ def get_top_tracks(access_token):
     res.raise_for_status()
     data = res.json()
 
-    return [
-        {
+    enriched_tracks = []
+
+    for item in data.get("items", []):
+        track_id = item["id"]
+
+        # Get SoundStat analysis
+        analysis = get_track_analysis(track_id)
+
+        enriched_tracks.append({
             "name": item["name"],
             "artist": item["artists"][0]["name"] if item["artists"] else None,
-            "id": item["id"],
+            "id": track_id,
             "image": item["album"]["images"][0]["url"] if item["album"]["images"] else None,
-        }
-        for item in data.get("items", [])
-    ]
+            "analysis": analysis
+        })
+
+    return enriched_tracks
 
 
 def get_top_artists(access_token):

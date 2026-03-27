@@ -1,9 +1,10 @@
-from flask import Flask, redirect, request, session, render_template
+from flask import Flask, redirect, request, session
 from flask_cors import CORS
 
 from auth import get_auth_url, get_tokens
-from user_data import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
-from playlist_data import playlist_data
+from backend.SpotifyData.user_data import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
+from backend.SpotifyData.playlist_data import playlist_data
+from track_data import get_track_analysis
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -84,6 +85,15 @@ def playlist():
     url = data.get("url")
 
     return playlist_data(session["access_token"], url)
+
+
+# Fetch user's top tracks' analysis
+@app.route("/top-tracks-analysis")
+def top_tracks_analysis():
+    if "access_token" not in session:
+        return redirect("/login")
+
+    return get_track_analysis(session["access_token"])
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomPieChart from "../../components/CustomPieChart";
+import localTracks from "./api.json";
 
 function Home() {
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ function Home() {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then((data) => setLoggedIn(data.logged_in));
+      .then((data) => {
+        setLoggedIn(data.logged_in);
+      });
   }, []);
 
   // Fetch everything once logged in
@@ -25,19 +28,26 @@ function Home() {
     if (!loggedIn) return;
 
     const fetchData = async () => {
-      const [userRes, tracksRes, artistsRes, decadesRes] = await Promise.all([
+      const [userRes, artistsRes, decadesRes] = await Promise.all([
         fetch("http://127.0.0.1:5000/user", { credentials: "include" }),
-        fetch("http://127.0.0.1:5000/top-tracks", { credentials: "include" }),
         fetch("http://127.0.0.1:5000/top-artists", { credentials: "include" }),
         fetch("http://127.0.0.1:5000/top-decades", { credentials: "include" }),
       ]);
 
+      // const [userRes, tracksRes, artistsRes, decadesRes] = await Promise.all([
+      //   fetch("http://127.0.0.1:5000/user", { credentials: "include" }),
+      //   fetch("http://127.0.0.1:5000/top-tracks", { credentials: "include" }),
+      //   fetch("http://127.0.0.1:5000/top-artists", { credentials: "include" }),
+      //   fetch("http://127.0.0.1:5000/top-decades", { credentials: "include" }),
+      // ]);
+
       const userData = await userRes.json();
-      const tracksData = await tracksRes.json();
+      // const tracksData = await tracksRes.json();
+      const tracksData = localTracks;
       const artistsData = await artistsRes.json();
       const decadesData = await decadesRes.json();
 
-      console.log(decadesData);
+      console.log(tracksData);
 
       setUser(userData);
       setTopTracks(tracksData);
