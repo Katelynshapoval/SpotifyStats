@@ -20,6 +20,8 @@ dist
 dist-ssr
 *.local
 
+frontend/src/pages/Home/api.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

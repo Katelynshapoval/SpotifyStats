@@ -24,11 +24,12 @@ function CustomPieChart({ data, title, dataKey = "value", nameKey = "label" }) {
               nameKey={nameKey}
               cx="50%"
               cy="40%"
-              outerRadius={70}
+              outerRadius={55}
               labelLine={false}
               label={({ cx, cy, midAngle, outerRadius, percent }) => {
-                const RADIAN = Math.PI / 180;
+                if (percent === 0) return null; // 👈 hide 0%
 
+                const RADIAN = Math.PI / 180;
                 const radius = outerRadius + 20;
 
                 const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -69,7 +70,9 @@ function CustomPieChart({ data, title, dataKey = "value", nameKey = "label" }) {
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: entry.fill }}
             />
-            <span className="text-sm text-white">{entry[nameKey]}</span>
+            <span className="text-xs text-white whitespace-pre-line max-w-[120px] leading-tight">
+              {entry[nameKey].replace(" (", "\n(")}
+            </span>{" "}
           </div>
         ))}
       </div>
