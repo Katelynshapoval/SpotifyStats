@@ -8,6 +8,7 @@ from auth import get_auth_url, get_tokens
 from backend.services.user_service import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
 from backend.services.playlist_service import playlist_data
 from backend.services.track_service import get_track_analysis
+from backend.services.ollama_service import get_roast
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -122,6 +123,15 @@ def top_tracks_analysis():
         return redirect("/login")
 
     return get_track_analysis(session["access_token"])
+
+
+# Roast with ollama
+@app.route("/roast")
+def roast():
+    if "access_token" not in session:
+        return {"error": "Not logged in"}, 401
+
+    return get_roast()
 
 
 if __name__ == "__main__":
