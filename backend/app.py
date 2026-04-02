@@ -1,10 +1,13 @@
+import json
+import os
+
 from flask import Flask, redirect, request, session
 from flask_cors import CORS
 
 from auth import get_auth_url, get_tokens
-from backend.SpotifyData.user_data import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
-from backend.SpotifyData.playlist_data import playlist_data
-from track_data import get_track_analysis
+from backend.services.user_service import get_user_profile, get_top_tracks, get_top_artists, get_top_decades
+from backend.services.playlist_service import playlist_data
+from backend.services.track_service import get_track_analysis
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5173"])
@@ -54,7 +57,32 @@ def top_tracks():
     if "access_token" not in session:
         return redirect("/login")
 
-    return get_top_tracks(session["access_token"])
+    CACHE_FILE = "cache/topTracks.json"
+
+    # 1. If cache exists and is not empty - return it
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, "r") as f:
+                data = json.load(f)
+
+                if data:  # not empty
+                    print("Returning cached data")
+                    return data
+        except Exception as e:
+            print("Failed to read cache:", e)
+
+    # 2. Otherwise fetch from Spotify
+    print("Fetching from Spotify API")
+    data = get_top_tracks(session["access_token"])
+
+    # 3. Save to cache
+    try:
+        with open(CACHE_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print("Failed to write cache:", e)
+
+    return data
 
 
 # Fetch user's top artists

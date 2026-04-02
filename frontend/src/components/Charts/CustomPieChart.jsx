@@ -27,7 +27,7 @@ function CustomPieChart({ data, title, dataKey = "value", nameKey = "label" }) {
               outerRadius={55}
               labelLine={false}
               label={({ cx, cy, midAngle, outerRadius, percent }) => {
-                if (percent === 0) return null; // 👈 hide 0%
+                if (percent === 0) return null;
 
                 const RADIAN = Math.PI / 180;
                 const radius = outerRadius + 20;

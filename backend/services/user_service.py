@@ -2,8 +2,8 @@ from collections import Counter
 
 import requests
 
-from backend.utils import get_headers
-from backend.track_data import get_track_analysis
+from backend.utils.utils import get_headers
+from backend.services.track_service import get_track_analysis
 
 BASE_URL = "https://api.spotify.com/v1"
 

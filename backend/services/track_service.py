@@ -8,7 +8,6 @@ SOUNDSTAT_API = os.getenv("SOUNDSTAT_API")
 
 
 def get_track_analysis(track_id):
-    return {"hola": "hola"}
     endpoint = f"https://soundstat.info/api/v1/track/{track_id}"
 
     res = requests.get(

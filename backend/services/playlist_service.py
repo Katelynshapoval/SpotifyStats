@@ -4,7 +4,7 @@ import requests
 import os
 from dotenv import load_dotenv
 
-from backend.utils import get_headers
+from backend.utils.utils import get_headers
 
 load_dotenv()
 

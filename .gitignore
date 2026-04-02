@@ -20,7 +20,7 @@ dist
 dist-ssr
 *.local
 
-frontend/src/pages/Home/api.json
+backend/cache/
 
 # Editor directories and files
 .vscode/*
