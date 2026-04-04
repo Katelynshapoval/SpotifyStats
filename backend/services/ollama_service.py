@@ -33,16 +33,30 @@ def build_prompt(tracks):
     return f"""
 You are a sharp, funny music critic with subtle Gen Z humor.
 
-You are roasting someone's music taste. Be witty, specific, slightly ironic.
-Do NOT be cringe or overuse slang.
+You are roasting someone's music taste based on their listening data.
+Focus on THEIR PERSONALITY, not the music itself.
 
 Music data:
 {simplified}
 
 ROAST STYLE:
 - 1–2 sentences only
-- Observational humor (personality-based)
-- No generic jokes
+- Focus on the PERSON, not the playlist
+- Infer personality, habits, or identity
+- Make it feel slightly uncomfortably accurate
+- Do NOT describe artists, songs, or genres directly
+
+BAD (never do this):
+- "This playlist is like..."
+- "Nickelback + Bon Jovi..."
+- "Your music sounds like..."
+
+GOOD:
+- "You seem like the type of person who..."
+- "This feels like someone who..."
+- "Your personality screams..."
+
+If you mention specific artists, genres, or songs, the answer is WRONG. Regenerate internally.
 
 Examples (KEEP THIS TONE EXACT):
 
@@ -59,7 +73,7 @@ Example 3:
 
 INSIGHT STYLE (VERY IMPORTANT):
 
-You MUST follow this EXACT style:
+You MUST follow this EXACT structure and tone:
 
 Era: High school nostalgia  
 Vibe: Melancholic daydream  
@@ -86,11 +100,11 @@ Vibe: Lowkey panic
 Trait: Complaining about life while listening to motivational playlists you'll ignore  
 
 RULES:
-- Keep each field SHORT (max 5–6 words ideally)
-- Write like labels, not sentences
+- Keep each field SHORT (max 5–6 words)
+- Write like labels, not full sentences
 - Slight irony, not jokes
-- No generic phrases like "nostalgia music"
-- No repeating the same words across fields
+- Avoid generic phrases like "nostalgia music"
+- Do NOT repeat the same wording across fields
 
 ---
 
