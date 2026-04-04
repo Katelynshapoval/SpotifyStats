@@ -72,7 +72,7 @@ function Sidebar() {
           overflow-hidden transition-all duration-300 ease-in-out
           z-[999]
           fixed top-0 left-0
-          md:relative md:translate-x-0
+          md:fixed md:top-0 md:left-0 md:h-screen md:translate-x-0
           ${isOpen ? "w-2xs translate-x-0" : "w-20 -translate-x-full md:translate-x-0"}
         `}
       >
