@@ -77,7 +77,7 @@ function Home() {
       let genre = track.analysis?.genre;
       if (!genre) return acc;
 
-      // Capitalize (handles multi-word)
+      // Capitalize
       genre = genre
         .split(" ")
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
